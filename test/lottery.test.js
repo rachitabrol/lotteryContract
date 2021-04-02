@@ -61,7 +61,7 @@ describe('lottery contract', ()=>{
     try{
       await lottery.methods.enter().send({
         from: accounts[0],
-        value: web3.utils.toWei('0.02','ether')
+        value: 0
       });
       assert(false);
     } catch(err){
@@ -72,11 +72,11 @@ describe('lottery contract', ()=>{
 
     try{
       await lottery.methods.pickWinner().send({
-        from: accounts[0]
+        from: accounts[1]
       });
-      assert.ok();
-    }catch(err){
       assert(false);
+    }catch(err){
+      assert(err);
     }
   });
   it('send money to winner and resets the players array', async ()=>{
